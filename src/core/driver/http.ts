@@ -29,7 +29,7 @@ interface IHttpError {
 interface IHttpClient {
   request<TBody, TResponse>(
     requestOption: IHttpRequest<TBody>
-  ): Promise<TResponse | IHttpError>;
+  ): Promise<TResponse>;
 }
 
 class HttpClient implements IHttpClient {
@@ -71,7 +71,7 @@ class HttpClient implements IHttpClient {
     requestOption: IHttpRequest<TBody>,
     multipart?: boolean,
     responeType?: ResponseType
-  ): Promise<TResponse | IHttpError> {
+  ): Promise<TResponse> {
     const config = this.buildConfig<TBody>(
       requestOption,
       multipart,

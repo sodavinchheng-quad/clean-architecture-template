@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import HttpClient, { HttpRequestMethod } from "./core/driver/http";
-import endpoint from "./core/constant/endpoint";
+import { GetAllUsersUseCase } from "./domain/usecase";
+import { UserRepositoryImpl } from "./data/repository";
+import { UserApiDataSource } from "./data/datasource";
 
 function App() {
-  const client = new HttpClient();
-
   useEffect(() => {
-    client
-      .request({
-        method: HttpRequestMethod.GET,
-        path: endpoint.user,
-      })
+    const usecase = new GetAllUsersUseCase(
+      new UserRepositoryImpl(new UserApiDataSource())
+    );
+
+    usecase
+      .execute()
       .then((res) => console.log("Res: ", res))
       .catch((err) => console.log("Err: ", err));
   }, []);
