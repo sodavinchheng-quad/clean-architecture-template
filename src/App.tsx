@@ -1,8 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import HttpClient, { HttpRequestMethod } from "./core/driver/http";
+import endpoint from "./core/constant/endpoint";
 
 function App() {
+  const client = new HttpClient();
+
+  useEffect(() => {
+    client
+      .request({
+        method: HttpRequestMethod.GET,
+        path: endpoint.user,
+      })
+      .then((res) => console.log("Res: ", res))
+      .catch((err) => console.log("Err: ", err));
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
