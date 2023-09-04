@@ -1,46 +1,56 @@
-# Getting Started with Create React App
+## Project Architecture
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Core Folder
 
-## Available Scripts
+- `constant`: config variables to be used throughout the project
+- `driver`: implementation of functions that connects to external datasources (API, localStorage, etc)
+- `utils`: contains common functions that can be used throughout the proejct
+  - **Note**: Unit tests should be written for each function defined in this folder to ensure the function works as intended, and is not degraded if a developer updates it
 
-In the project directory, you can run:
+### Domain Layer
 
-### `npm start`
+This layer is where we write the business logic of the application. This layer should be written before any other layer to describe the implementation of the requirements.
+**Note**: This layer should NOT be changed unless:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- The business requirements has changed
+- The original implmentation is not correct
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Folder structure:
 
-### `npm test`
+- `model`: describes the object definition, what fields it has, and its relationship with other models
+- `repository`: defines what functions the repository implementation should have. The functions will be called by the usecase. The function definitions will NOT be implemented here. The implementation will be in the data layer.
+- `usecase`: contains all the usecases that the application will have. Each usecase will have its own repository class from the `repository` folder.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Data Layer
 
-### `npm run build`
+This layer is where we write the functions to retrieve data from vaious datasources.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Folder structure:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `datasource`: contains datasource classes with functions to fetch data from various datasources. Each datasource class will have its own driver, which will be used to fetch the data.
+- `repository`: contains the implementation of the repository class defined in the domain layer. Each repository class can receive a datasource class which it will use to fetch data from the intended datasource.
+- `service`: contains functions that transform the data to fit the application's needs.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### View Layer
 
-### `npm run eject`
+This layer is where we write our UI code.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Folder structure:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `components`
+- `ducks`
+- `hooks`
+- `pages`
+- `templates`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Dependency Injection
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The `dependency` folder is where we define our dependencies that we will use throughout the project. This is where we map the repository implementations from the data layer to each usecases.
 
-## Learn More
+## Unit Testing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Unit tests should be written for each layer to ensure code quality, and to check for possible degration if the source code is updated in the future
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+yarn test
+```
