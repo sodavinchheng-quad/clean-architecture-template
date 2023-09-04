@@ -1,17 +1,13 @@
 import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { GetAllUsersUseCase } from "./domain/usecase";
-import { UserRepositoryImpl } from "./data/repository";
-import { UserApiDataSource } from "./data/datasource";
+import dependency from "./dependency";
 
-function App() {
+const App = () => {
+  const { getAllUsersUseCase } = dependency.user;
+
   useEffect(() => {
-    const usecase = new GetAllUsersUseCase(
-      new UserRepositoryImpl(new UserApiDataSource())
-    );
-
-    usecase
+    getAllUsersUseCase
       .execute()
       .then((res) => console.log("Res: ", res))
       .catch((err) => console.log("Err: ", err));
@@ -35,6 +31,6 @@ function App() {
       </header>
     </div>
   );
-}
+};
 
 export default App;

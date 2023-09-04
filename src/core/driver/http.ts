@@ -26,13 +26,13 @@ interface IHttpError {
   readonly meta?: Record<string, unknown>;
 }
 
-interface IHttpClient {
+export interface IHttpClient {
   request<TBody, TResponse>(
     requestOption: IHttpRequest<TBody>
   ): Promise<TResponse>;
 }
 
-class HttpClient implements IHttpClient {
+export class HttpClient implements IHttpClient {
   private API_BASE_URL = config.apiBaseURL;
 
   private createHeaders(
@@ -83,5 +83,3 @@ class HttpClient implements IHttpClient {
     return res.data;
   }
 }
-
-export default HttpClient;

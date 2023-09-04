@@ -1,11 +1,11 @@
-import Storage from "../../../core/driver/storage";
+import { IStorage } from "../../../core/driver/storage";
 import { User } from "../../../domain/model";
 import { IUserDataSource } from "./UserDataSource";
 
 export class UserLocalStorageDataSource implements IUserDataSource {
   private _storage;
-  constructor() {
-    this._storage = new Storage();
+  constructor(storage: IStorage) {
+    this._storage = storage;
   }
   async getAllUsers() {
     return [] as User[];

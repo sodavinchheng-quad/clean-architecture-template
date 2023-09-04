@@ -6,7 +6,7 @@ export interface IStorage {
   remove(name: string): void;
 }
 
-class Storage implements IStorage {
+export class Storage implements IStorage {
   get(name: string): string | undefined {
     try {
       const hash = localStorage.getItem(name) ?? "";
@@ -41,5 +41,3 @@ class Storage implements IStorage {
     }
   }
 }
-
-export default Storage;

@@ -1,12 +1,12 @@
 import endpoint from "../../../core/constant/endpoint";
-import HttpClient, { HttpRequestMethod } from "../../../core/driver/http";
+import { HttpRequestMethod, IHttpClient } from "../../../core/driver/http";
 import { User } from "../../../domain/model";
 import { IUserDataSource } from "./UserDataSource";
 
 export class UserApiDataSource implements IUserDataSource {
   private _httpClient;
-  constructor() {
-    this._httpClient = new HttpClient();
+  constructor(httpClient: IHttpClient) {
+    this._httpClient = httpClient;
   }
 
   async getAllUsers() {
