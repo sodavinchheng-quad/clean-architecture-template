@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import dependency from "./dependency";
+import store from "./ducks/store";
+import { userActions } from "./ducks/user";
 
 const App = () => {
-  const { getAllUsersUseCase } = dependency.user;
-
   useEffect(() => {
-    getAllUsersUseCase
-      .execute()
-      .then((res) => console.log("Res: ", res))
-      .catch((err) => console.log("Err: ", err));
+    store.dispatch(
+      userActions.getAllUsers.started({
+        onSuccess: (res) => console.log("Res: ", res),
+        onError: (err) => console.log("Err: ", err),
+      })
+    );
   }, []);
 
   return (
