@@ -1,6 +1,6 @@
-import { User } from "../../../domain/model";
+import { UserEntity } from "../../entity";
 
 export interface IUserDataSource {
-  getAllUsers: () => Promise<User[]>;
-  getUserById: (id: number) => Promise<User>;
+  getAllUsers: () => Promise<UserEntity[]>;
+  getUserById: (id: number) => Promise<UserEntity>;
 }

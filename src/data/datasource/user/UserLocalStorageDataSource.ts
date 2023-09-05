@@ -1,5 +1,5 @@
 import { IStorage } from "../../../core/driver/storage";
-import { User } from "../../../domain/model";
+import { UserEntity } from "../../entity";
 import { IUserDataSource } from "./UserDataSource";
 
 export class UserLocalStorageDataSource implements IUserDataSource {
@@ -8,10 +8,10 @@ export class UserLocalStorageDataSource implements IUserDataSource {
     this._storage = storage;
   }
   async getAllUsers() {
-    return [] as User[];
+    return [] as UserEntity[];
   }
 
   async getUserById(id: number) {
-    return {} as User;
+    return {} as UserEntity;
   }
 }

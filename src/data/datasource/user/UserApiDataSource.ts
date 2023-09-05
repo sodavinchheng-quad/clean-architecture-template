@@ -1,6 +1,6 @@
 import endpoint from "../../../core/constant/endpoint";
 import { HttpRequestMethod, IHttpClient } from "../../../core/driver/http";
-import { User } from "../../../domain/model";
+import { UserEntity } from "../../entity";
 import { IUserDataSource } from "./UserDataSource";
 
 export class UserApiDataSource implements IUserDataSource {
@@ -10,16 +10,16 @@ export class UserApiDataSource implements IUserDataSource {
   }
 
   async getAllUsers() {
-    return await this._httpClient.request<{}, User[]>({
+    return await this._httpClient.request<{}, UserEntity[]>({
       method: HttpRequestMethod.GET,
-      path: endpoint.user,
+      path: endpoint.getAllUser,
     });
   }
 
   async getUserById(id: number) {
-    return await this._httpClient.request<{}, User>({
+    return await this._httpClient.request<{}, UserEntity>({
       method: HttpRequestMethod.GET,
-      path: endpoint.user + "/" + id,
+      path: endpoint.getUserById.replace("${id}", id.toString()),
     });
   }
 }

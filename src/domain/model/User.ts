@@ -20,7 +20,7 @@ export interface User {
   name: string;
   username: string;
   email: string;
-  phone: string;
+  tel: string;
   website: string;
   company: Company;
   address: Address;

@@ -19,7 +19,7 @@ interface IHttpRequest<TBody> {
   readonly body?: TBody;
 }
 
-interface IHttpError {
+export interface IHttpError {
   readonly message: string;
   readonly status: number;
   readonly body?: Record<string, unknown>;

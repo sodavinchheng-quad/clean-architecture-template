@@ -1,17 +1,24 @@
 import { IUserRepository } from "../../domain/repository";
 import { IUserDataSource } from "../datasource/user/UserDataSource";
+import { UserService } from "../service";
 
 export class UserRepositoryImpl implements IUserRepository {
   private _dataSource: IUserDataSource;
-  constructor(dataSource: IUserDataSource) {
+  private _service: UserService;
+  constructor(dataSource: IUserDataSource, service: UserService) {
     this._dataSource = dataSource;
+    this._service = service;
   }
 
   async getAllUsers() {
-    return await this._dataSource.getAllUsers();
+    const users = await this._dataSource.getAllUsers();
+
+    return users.map(this._service.mapUserEntityToUser);
   }
 
   async getUserById(id: number) {
-    return await this._dataSource.getUserById(id);
+    const user = await this._dataSource.getUserById(id);
+
+    return this._service.mapUserEntityToUser(user);
   }
 }

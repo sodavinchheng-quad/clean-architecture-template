@@ -1,5 +1,6 @@
 const endpoint = {
-  user: "/users",
+  getAllUser: "/users",
+  getUserById: "/users/${id}",
 };
 
 export default endpoint;
