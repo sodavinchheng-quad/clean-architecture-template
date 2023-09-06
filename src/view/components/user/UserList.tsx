@@ -1,13 +1,19 @@
 import React from "react";
 import { User } from "../../../domain/model";
 import { UserItem } from "./UserItem";
+import { connect, DispatchProp } from "react-redux";
+import { StoreState } from "../../../ducks/store";
 
-type Props = {
+interface PropsFromParent {}
+
+interface PropsFromStore {
   users: User[];
-};
+}
 
-export const UserList: React.FC<Props> = (props) => {
-  const { users } = props;
+const UserListComponent: React.FC<
+  PropsFromParent & PropsFromStore & DispatchProp
+> = (props) => {
+  const { users, dispatch } = props;
 
   return (
     <>
@@ -17,3 +23,9 @@ export const UserList: React.FC<Props> = (props) => {
     </>
   );
 };
+
+export const UserList = connect<PropsFromStore, {}, {}, StoreState>(
+  (state) => ({
+    users: state.user.allUsers,
+  })
+)(UserListComponent);

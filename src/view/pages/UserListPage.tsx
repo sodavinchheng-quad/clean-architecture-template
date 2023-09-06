@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { userActions, userSelectors } from "../../ducks/user";
-import { UserList } from "../components";
+import { DispatchProp, connect } from "react-redux";
+import { userActions } from "../../ducks/user";
+import { UserList } from "../components/user";
+import { StoreState } from "../../ducks/store";
 
-export const UserListPage: React.FC = () => {
-  const dispatch = useDispatch();
-  const users = useSelector(userSelectors.getAllUsers);
+const UserListPageComponent: React.FC<DispatchProp> = (props) => {
+  const { dispatch } = props;
 
   useEffect(() => {
     dispatch(
@@ -16,5 +16,9 @@ export const UserListPage: React.FC = () => {
     );
   }, []);
 
-  return <UserList users={users} />;
+  return <UserList />;
 };
+
+export const UserListPage = connect<{}, {}, {}, StoreState>((state) => ({}))(
+  UserListPageComponent
+);
