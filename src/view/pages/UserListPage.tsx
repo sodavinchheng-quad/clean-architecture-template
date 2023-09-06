@@ -3,9 +3,16 @@ import { DispatchProp, connect } from "react-redux";
 import { userActions } from "../../ducks/user";
 import { StoreState } from "../../ducks/store";
 import { UserList } from "../components";
+import { User } from "../../domain/model";
 
-const UserListPageComponent: React.FC<DispatchProp> = (props) => {
-  const { dispatch } = props;
+interface PropsFromStore {
+  users: User[];
+}
+
+const UserListPageComponent: React.FC<PropsFromStore & DispatchProp> = (
+  props
+) => {
+  const { users, dispatch } = props;
 
   useEffect(() => {
     dispatch(
@@ -16,9 +23,11 @@ const UserListPageComponent: React.FC<DispatchProp> = (props) => {
     );
   }, []);
 
-  return <UserList />;
+  return <UserList users={users} />;
 };
 
-export const UserListPage = connect<{}, {}, {}, StoreState>((state) => ({}))(
-  UserListPageComponent
-);
+export const UserListPage = connect<PropsFromStore, {}, {}, StoreState>(
+  (state) => ({
+    users: state.user.allUsers,
+  })
+)(UserListPageComponent);
