@@ -1,13 +1,14 @@
 import CryptoJS from "crypto-js";
+import { LocalStorageKey } from "../constant/storage";
 
 export interface IStorage {
-  get(name: string): string | undefined;
-  set(name: string, value: string): void;
+  get(name: LocalStorageKey): string | undefined;
+  set(name: LocalStorageKey, value: string): void;
   remove(name: string): void;
 }
 
 export class Storage implements IStorage {
-  get(name: string): string | undefined {
+  get(name: LocalStorageKey): string | undefined {
     try {
       const hash = localStorage.getItem(name) ?? "";
       const decipher = CryptoJS.AES.decrypt(
@@ -21,7 +22,7 @@ export class Storage implements IStorage {
     }
   }
 
-  set(name: string, value: string): void {
+  set(name: LocalStorageKey, value: string): void {
     try {
       const encryptedValue = CryptoJS.AES.encrypt(
         value,
@@ -33,7 +34,7 @@ export class Storage implements IStorage {
     }
   }
 
-  remove(name: string): void {
+  remove(name: LocalStorageKey): void {
     try {
       localStorage.removeItem(name);
     } catch (e) {
