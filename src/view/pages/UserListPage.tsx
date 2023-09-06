@@ -15,12 +15,14 @@ const UserListPageComponent: React.FC<PropsFromStore & DispatchProp> = (
   const { users, dispatch } = props;
 
   useEffect(() => {
-    dispatch(
-      userActions.getAllUsers.started({
-        onSuccess: (res) => console.log("Res: ", res),
-        onError: (err) => console.log("Err: ", err),
-      })
-    );
+    if (users.length === 0) {
+      dispatch(
+        userActions.getAllUsers.started({
+          onSuccess: (res) => console.log("Res: ", res),
+          onError: (err) => console.log("Err: ", err),
+        })
+      );
+    }
   }, []);
 
   return <UserList users={users} />;

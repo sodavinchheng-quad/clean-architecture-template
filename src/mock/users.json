@@ -4,7 +4,7 @@
     "name": "User One",
     "username": "username1",
     "email": "userone@example.com",
-    "tel": "+9112800800",
+    "phone": "+9112800800",
     "website": "www.example.com",
     "company": {
       "bs": "bs",
@@ -27,7 +27,7 @@
     "name": "User Two",
     "username": "username2",
     "email": "usertwo@example.com",
-    "tel": "+9112800801",
+    "phone": "+9112800801",
     "website": "www.example.com",
     "company": {
       "bs": "bs",

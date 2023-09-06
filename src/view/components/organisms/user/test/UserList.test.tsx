@@ -3,8 +3,11 @@ import { User } from "../../../../../domain/model";
 import { UserList } from "../UserList";
 
 import users from "../../../../../mock/users.json";
+import { UserService } from "../../../../../data/service";
 
-const mockUsers: User[] = users;
+const userService = new UserService();
+
+const mockUsers: User[] = users.map(userService.mapUserEntityToUser);
 
 test("Text component renders the text based on prop input", async () => {
   render(<UserList users={mockUsers} />);
