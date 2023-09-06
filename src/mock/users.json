@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1,
+    "name": "User One",
+    "username": "username1",
+    "email": "userone@example.com",
+    "tel": "+9112800800",
+    "website": "www.example.com",
+    "company": {
+      "bs": "bs",
+      "catchPhrase": "Catch Phrase",
+      "name": "My Company 1"
+    },
+    "address": {
+      "suite": "123",
+      "street": "Mango Avenue",
+      "city": "New York",
+      "zipcode": "1230001",
+      "geo": {
+        "lat": "27.0021",
+        "lng": "138.2902"
+      }
+    }
+  },
+  {
+    "id": 2,
+    "name": "User Two",
+    "username": "username2",
+    "email": "usertwo@example.com",
+    "tel": "+9112800801",
+    "website": "www.example.com",
+    "company": {
+      "bs": "bs",
+      "catchPhrase": "Catch Phrase",
+      "name": "My Company 2"
+    },
+    "address": {
+      "suite": "123",
+      "street": "Mango Avenue",
+      "city": "New York",
+      "zipcode": "1230001",
+      "geo": {
+        "lat": "27.0021",
+        "lng": "138.2902"
+      }
+    }
+  }
+]
