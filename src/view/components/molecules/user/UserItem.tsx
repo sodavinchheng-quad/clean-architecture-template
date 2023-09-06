@@ -1,5 +1,6 @@
 import React from "react";
-import { User } from "../../../domain/model";
+import { User } from "../../../../domain/model";
+import { Text } from "../../atoms";
 
 interface Props {
   user: User;
@@ -10,7 +11,7 @@ export const UserItem: React.FC<Props> = (props) => {
 
   return (
     <>
-      <p>User {user.id}</p>
+      <Text text={`User: ${user.id}`} />
       <li>{user.name}</li>
       <li>{user.email}</li>
       <li>{user.tel}</li>

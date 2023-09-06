@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { DispatchProp, connect } from "react-redux";
 import { userActions } from "../../ducks/user";
-import { UserList } from "../components/user";
 import { StoreState } from "../../ducks/store";
+import { UserList } from "../components";
 
 const UserListPageComponent: React.FC<DispatchProp> = (props) => {
   const { dispatch } = props;
