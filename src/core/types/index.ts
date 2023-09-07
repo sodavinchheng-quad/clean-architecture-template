@@ -9,3 +9,8 @@ export interface CommonAsyncCallback<TResponse> {
   onError?: (err: IHttpError) => void;
   onFinish?: () => void;
 }
+
+export interface CommonHttpResponse<TResponse> {
+  response?: TResponse;
+  error?: IHttpError;
+}
