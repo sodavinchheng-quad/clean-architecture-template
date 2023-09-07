@@ -10,7 +10,9 @@ const userService = new UserService();
 const mockUsers: User[] = users.map(userService.mapUserEntityToUser);
 
 test("UserList component renders all user information correctly", async () => {
-  render(<UserList users={mockUsers} />);
+  const onClick = jest.fn();
+
+  render(<UserList users={mockUsers} onClick={onClick} />);
 
   expect(screen.getByText("User: 1")).toBeInTheDocument();
   expect(screen.getByText("User One")).toBeInTheDocument();

@@ -1,12 +1,12 @@
 import "./App.css";
 import store from "./ducks/store";
 import { Provider } from "react-redux";
-import { UserListPage } from "./view/pages";
+import { BasePage } from "./view";
 
 const App = () => {
   return (
     <Provider store={store}>
-      <UserListPage />
+      <BasePage />
     </Provider>
   );
 };
