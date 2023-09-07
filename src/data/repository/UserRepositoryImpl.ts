@@ -19,6 +19,8 @@ export class UserRepositoryImpl implements IUserRepository {
   async getUserById(id: number) {
     const user = await this._dataSource.getUserById(id);
 
+    if (!user) return null;
+
     return this._service.mapUserEntityToUser(user);
   }
 }

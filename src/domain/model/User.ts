@@ -3,16 +3,13 @@ interface Address {
   street: string;
   city: string;
   zipcode: string;
-  geo: {
-    lat: string;
-    lng: string;
-  };
+  latitude: string;
+  longitude: string;
 }
 
 interface Company {
-  bs: string;
-  catchPhrase: string;
   name: string;
+  catchPhrase: string;
 }
 
 export interface User {

@@ -3,7 +3,7 @@ import { IUserRepository } from "../../repository";
 
 import { IUseCase } from "../Usecase";
 
-export class GetUserByIdUseCase implements IUseCase<number, User> {
+export class GetUserByIdUseCase implements IUseCase<number, User | null> {
   private _repository: IUserRepository;
   constructor(repository: IUserRepository) {
     this._repository = repository;

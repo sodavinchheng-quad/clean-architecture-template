@@ -10,8 +10,18 @@ export class UserService {
       email: user.email,
       tel: user.phone,
       website: user.website,
-      company: user.company,
-      address: user.address,
+      company: {
+        name: user.company.name,
+        catchPhrase: user.company.catchPhrase,
+      },
+      address: {
+        suite: user.address.suite,
+        street: user.address.street,
+        city: user.address.city,
+        zipcode: user.address.zipcode,
+        latitude: user.address.geo.lat,
+        longitude: user.address.geo.lng,
+      },
     };
   };
 }

@@ -1,26 +1,20 @@
 import { render, screen } from "@testing-library/react";
+import { UserItem } from "../UserItem";
 import { User } from "../../../../../domain/model";
-import { UserList } from "../UserList";
 
 import users from "../../../../../mock/users.json";
 import { UserService } from "../../../../../data/service";
 
 const userService = new UserService();
 
-const mockUsers: User[] = users.map(userService.mapUserEntityToUser);
+const mockUser: User = userService.mapUserEntityToUser(users[0]);
 
-test("Text component renders the text based on prop input", async () => {
-  render(<UserList users={mockUsers} />);
+test("UserItem component renders user information correctly", async () => {
+  render(<UserItem user={mockUser} />);
 
   expect(screen.getByText("User: 1")).toBeInTheDocument();
   expect(screen.getByText("User One")).toBeInTheDocument();
   expect(screen.getByText("userone@example.com")).toBeInTheDocument();
   expect(screen.getByText("+9112800800")).toBeInTheDocument();
   expect(screen.getByText("My Company 1")).toBeInTheDocument();
-
-  expect(screen.getByText("User: 2")).toBeInTheDocument();
-  expect(screen.getByText("User Two")).toBeInTheDocument();
-  expect(screen.getByText("usertwo@example.com")).toBeInTheDocument();
-  expect(screen.getByText("+9112800801")).toBeInTheDocument();
-  expect(screen.getByText("My Company 2")).toBeInTheDocument();
 });
