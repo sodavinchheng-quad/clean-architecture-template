@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { DispatchProp, connect } from "react-redux";
-import { userActions } from "../../ducks/user";
+import { userActions, userSelectors } from "../../ducks/user";
 import { StoreState } from "../../ducks/store";
 import { UserList } from "../components";
 import { User } from "../../domain/model";
@@ -10,7 +10,7 @@ interface PropsFromStore {
 }
 
 const UserListPageComponent: React.FC<PropsFromStore & DispatchProp> = (
-  props
+  props,
 ) => {
   const { users, dispatch } = props;
 
@@ -20,7 +20,7 @@ const UserListPageComponent: React.FC<PropsFromStore & DispatchProp> = (
         userActions.getAllUsers.started({
           onSuccess: (res) => console.log("Res: ", res),
           onError: (err) => console.log("Err: ", err),
-        })
+        }),
       );
     }
   }, []);
@@ -30,6 +30,6 @@ const UserListPageComponent: React.FC<PropsFromStore & DispatchProp> = (
 
 export const UserListPage = connect<PropsFromStore, {}, {}, StoreState>(
   (state) => ({
-    users: state.user.allUsers,
-  })
+    users: userSelectors.getAllUsers(state),
+  }),
 )(UserListPageComponent);

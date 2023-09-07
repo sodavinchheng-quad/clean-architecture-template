@@ -6,6 +6,6 @@ const actionCreator = actionCreatorFactory("@@User");
 
 export const userActions = {
   getAllUsers: actionCreator.async<CommonAsyncCallback<User[]>, User[]>(
-    "GET_ALL_USERS"
+    "GET_ALL_USERS",
   ),
 };

@@ -28,7 +28,7 @@ export interface IHttpError {
 
 export interface IHttpClient {
   request<TBody, TResponse>(
-    requestOption: IHttpRequest<TBody>
+    requestOption: IHttpRequest<TBody>,
   ): Promise<TResponse>;
 }
 
@@ -37,7 +37,7 @@ export class HttpClient implements IHttpClient {
 
   private createHeaders(
     token?: string,
-    multipart?: boolean
+    multipart?: boolean,
   ): RawAxiosRequestHeaders {
     const header: RawAxiosRequestHeaders = {
       "Content-Type": multipart ? "multipart/form-data" : "application/json",
@@ -51,7 +51,7 @@ export class HttpClient implements IHttpClient {
   private buildConfig<TBody>(
     request: IHttpRequest<TBody>,
     multipart?: boolean,
-    responeType?: ResponseType
+    responeType?: ResponseType,
   ): AxiosRequestConfig<TBody> {
     const isRead = request.method === HttpRequestMethod.GET;
     const config: AxiosRequestConfig<TBody> = {
@@ -70,15 +70,15 @@ export class HttpClient implements IHttpClient {
   async request<TBody, TResponse>(
     requestOption: IHttpRequest<TBody>,
     multipart?: boolean,
-    responeType?: ResponseType
+    responeType?: ResponseType,
   ): Promise<TResponse> {
     const config = this.buildConfig<TBody>(
       requestOption,
       multipart,
-      responeType
+      responeType,
     );
     const res = await axios.request<TResponse, AxiosResponse<TResponse>, TBody>(
-      config
+      config,
     );
     return res.data;
   }

@@ -12,7 +12,7 @@ export default (drivers: IDriver): IRepositories => {
   return {
     user: new UserRepositoryImpl(
       new UserApiDataSource(drivers.http),
-      new UserService()
+      new UserService(),
     ),
   };
 };

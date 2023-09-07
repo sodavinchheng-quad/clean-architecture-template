@@ -13,7 +13,7 @@ export class Storage implements IStorage {
       const hash = localStorage.getItem(name) ?? "";
       const decipher = CryptoJS.AES.decrypt(
         hash,
-        process.env.REACT_APP_SECRET as string
+        process.env.REACT_APP_SECRET as string,
       );
       const res = decipher.toString(CryptoJS.enc.Utf8);
       return res;
@@ -26,7 +26,7 @@ export class Storage implements IStorage {
     try {
       const encryptedValue = CryptoJS.AES.encrypt(
         value,
-        process.env.REACT_APP_SECRET as string
+        process.env.REACT_APP_SECRET as string,
       );
       localStorage.setItem(name, encryptedValue.toString());
     } catch (e) {
