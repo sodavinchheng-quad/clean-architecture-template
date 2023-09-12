@@ -3,9 +3,10 @@ import { User } from "../../../../domain/model";
 import users from "../../../../mock/users.json";
 
 test("UserService class maps UserEntity to User model correctly", async () => {
+  // TODO: write validation test cases
   const userService = new UserService();
 
-  const user: User = userService.mapUserEntityToUser(users[0]);
+  const user: User = userService.mapEntityToModel(users[0]);
 
   // Type
   expect(user).toEqual(

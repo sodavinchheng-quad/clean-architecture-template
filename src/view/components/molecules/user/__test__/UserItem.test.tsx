@@ -7,7 +7,7 @@ import { UserService } from "../../../../../data/service";
 
 const userService = new UserService();
 
-const mockUser: User = userService.mapUserEntityToUser(users[0]);
+const mockUser: User = userService.mapEntityToModel(users[0]);
 
 test("UserItem component renders user information correctly", async () => {
   const onClick = jest.fn();

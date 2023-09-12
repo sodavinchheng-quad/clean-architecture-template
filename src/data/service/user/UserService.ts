@@ -1,8 +1,19 @@
 import { User } from "../../../domain/model";
-import { UserEntity } from "../../entity";
+import { UserEntity, UserRunType } from "../../entity";
+import { EntityService } from "../EntityService";
+import { TypeValidationService } from "../common";
 
-export class UserService {
-  mapUserEntityToUser = (user: UserEntity): User => {
+export class UserService implements EntityService<UserEntity, User> {
+  private _validator: TypeValidationService;
+  constructor() {
+    this._validator = new TypeValidationService();
+  }
+
+  validateEntityRunType = (user: UserEntity) => {
+    this._validator.validate(UserRunType, user);
+  };
+
+  mapEntityToModel = (user: UserEntity): User => {
     return {
       id: user.id,
       name: user.name,

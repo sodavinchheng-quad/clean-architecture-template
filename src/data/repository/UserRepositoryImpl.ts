@@ -13,7 +13,11 @@ export class UserRepositoryImpl implements IUserRepository {
   async getAllUsers() {
     const users = await this._dataSource.getAllUsers();
 
-    return users.map(this._service.mapUserEntityToUser);
+    if (users.length > 0) {
+      this._service.validateEntityRunType(users[0]);
+    }
+
+    return users.map(this._service.mapEntityToModel);
   }
 
   async getUserById(id: number) {
@@ -21,6 +25,6 @@ export class UserRepositoryImpl implements IUserRepository {
 
     if (!user) return null;
 
-    return this._service.mapUserEntityToUser(user);
+    return this._service.mapEntityToModel(user);
   }
 }

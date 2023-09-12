@@ -1,18 +1,18 @@
 import { UserApiDataSource } from "../data/datasource";
 import { UserRepositoryImpl } from "../data/repository";
-import { UserService } from "../data/service";
 import { IUserRepository } from "../domain/repository";
 import { IDriver } from "./drivers";
+import { IServices } from "./services";
 
 export interface IRepositories {
   user: IUserRepository;
 }
 
-export default (drivers: IDriver): IRepositories => {
+export default (drivers: IDriver, services: IServices): IRepositories => {
   return {
     user: new UserRepositoryImpl(
       new UserApiDataSource(drivers.http),
-      new UserService(),
+      services.user,
     ),
   };
 };
