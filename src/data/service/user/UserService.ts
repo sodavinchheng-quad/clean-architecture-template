@@ -9,8 +9,8 @@ export class UserService implements EntityService<UserEntity, User> {
     this._validator = new TypeValidationService();
   }
 
-  validateEntityRunType = (user: UserEntity) => {
-    this._validator.validate(UserRunType, user);
+  validateEntityRunType = (user: UserEntity): boolean => {
+    return this._validator.validate(UserRunType, user);
   };
 
   mapEntityToModel = (user: UserEntity): User => {

@@ -3,10 +3,8 @@ import { UserEntity } from "../../entity";
 import { IUserDataSource } from "./UserDataSource";
 
 export class UserLocalStorageDataSource implements IUserDataSource {
-  private _storage;
-  constructor(storage: IStorage) {
-    this._storage = storage;
-  }
+  constructor(private _storage: IStorage) {}
+
   async getAllUsers() {
     return [] as UserEntity[];
   }

@@ -2,8 +2,23 @@ import { UserService } from "../UserService";
 import { User } from "../../../../domain/model";
 import users from "../../../../mock/users.json";
 
+test("UserService class validates UserEntity correctly", async () => {
+  const userService = new UserService();
+
+  // Valid Type
+  const isValid = userService.validateEntityRunType(users[0]);
+  expect(isValid).toEqual(true);
+
+  // Invalid Type
+  const isInvalid = userService.validateEntityRunType({
+    ...users[0],
+    // @ts-ignore
+    username: null,
+  });
+  expect(isInvalid).toEqual(false);
+});
+
 test("UserService class maps UserEntity to User model correctly", async () => {
-  // TODO: write validation test cases
   const userService = new UserService();
 
   const user: User = userService.mapEntityToModel(users[0]);

@@ -4,10 +4,7 @@ import { UserEntity } from "../../entity";
 import { IUserDataSource } from "./UserDataSource";
 
 export class UserApiDataSource implements IUserDataSource {
-  private _httpClient;
-  constructor(httpClient: IHttpClient) {
-    this._httpClient = httpClient;
-  }
+  constructor(private _httpClient: IHttpClient) {}
 
   async getAllUsers() {
     return await this._httpClient.request<{}, UserEntity[]>({

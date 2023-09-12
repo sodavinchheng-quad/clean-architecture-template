@@ -1,4 +1,4 @@
 export interface EntityService<TEntity, TModel> {
-  validateEntityRunType(obj: TEntity): void;
+  validateEntityRunType(obj: TEntity): boolean;
   mapEntityToModel(entity: TEntity): TModel;
 }
