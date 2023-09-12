@@ -8,7 +8,9 @@ export class TypeValidationService {
       try {
         type.check(object);
       } catch (error) {
-        console.warn(error);
+        if (process.env.NODE_ENV === "development") {
+          console.warn(error);
+        }
       }
     }
 

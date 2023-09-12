@@ -30,7 +30,9 @@ export class Storage implements IStorage {
       );
       localStorage.setItem(name, encryptedValue.toString());
     } catch (e) {
-      console.warn("Unable to save item", e);
+      if (process.env.NODE_ENV === "development") {
+        console.warn("Unable to save item", e);
+      }
     }
   }
 
@@ -38,7 +40,9 @@ export class Storage implements IStorage {
     try {
       localStorage.removeItem(name);
     } catch (e) {
-      console.warn("Unable to remove item", e);
+      if (process.env.NODE_ENV === "development") {
+        console.warn("Unable to remove item", e);
+      }
     }
   }
 }
