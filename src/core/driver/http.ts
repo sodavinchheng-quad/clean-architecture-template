@@ -5,6 +5,8 @@ import axios, {
   ResponseType,
 } from "axios";
 import config from "../constant/config";
+import { RuntypeBase } from "runtypes/lib/runtype";
+import { TypeValidationService } from "../../data/service";
 
 export enum HttpRequestMethod {
   GET = "GET",
@@ -29,11 +31,18 @@ export interface IHttpError {
 export interface IHttpClient {
   request<TBody, TResponse>(
     requestOption: IHttpRequest<TBody>,
+    runType?: RuntypeBase,
+    multipart?: boolean,
+    responeType?: ResponseType,
   ): Promise<TResponse>;
 }
 
 export class HttpClient implements IHttpClient {
   private API_BASE_URL = config.apiBaseURL;
+  private _validator: TypeValidationService;
+  constructor() {
+    this._validator = new TypeValidationService();
+  }
 
   private createHeaders(
     token?: string,
@@ -69,6 +78,7 @@ export class HttpClient implements IHttpClient {
 
   async request<TBody, TResponse>(
     requestOption: IHttpRequest<TBody>,
+    runType?: RuntypeBase,
     multipart?: boolean,
     responeType?: ResponseType,
   ): Promise<TResponse> {
@@ -80,6 +90,11 @@ export class HttpClient implements IHttpClient {
     const res = await axios.request<TResponse, AxiosResponse<TResponse>, TBody>(
       config,
     );
+
+    if (runType) {
+      this._validator.validate(runType, res.data);
+    }
+
     return res.data;
   }
 }
