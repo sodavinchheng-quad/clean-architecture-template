@@ -2,12 +2,12 @@ import { User } from "../../domain/model";
 import { IUserRepository } from "../../domain/repository";
 import { IUserDataSource } from "../datasource/user/UserDataSource";
 import { UserEntity } from "../entity";
-import { EntityService } from "../service";
+import { IEntityService } from "../service";
 
 export class UserRepositoryImpl implements IUserRepository {
   constructor(
     private _dataSource: IUserDataSource,
-    private _service: EntityService<UserEntity, User>,
+    private _service: IEntityService<UserEntity, User>,
   ) {}
 
   async getAllUsers() {

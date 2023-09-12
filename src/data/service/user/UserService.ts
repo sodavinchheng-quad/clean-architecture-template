@@ -1,9 +1,9 @@
 import { User } from "../../../domain/model";
 import { UserEntity, UserRunType } from "../../entity";
-import { EntityService } from "../EntityService";
+import { IEntityService } from "../EntityService";
 import { TypeValidationService } from "../common";
 
-export class UserService implements EntityService<UserEntity, User> {
+export class UserService implements IEntityService<UserEntity, User> {
   private _validator: TypeValidationService;
   constructor() {
     this._validator = new TypeValidationService();
