@@ -1,2 +1,2 @@
-export * from "./UserListPage";
-export * from "./UserListPageComponent";
+export * from "./UserDetail";
+export * from "./UserList";

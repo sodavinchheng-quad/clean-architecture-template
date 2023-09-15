@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
-import { userActions, userSelectors } from "../../../ducks/user";
+import { CommonAsyncCallback } from "../../../../core/types";
+import { User } from "../../../../domain/model";
 import { StoreState } from "../../../ducks/store";
-import { User } from "../../../domain/model";
+import { userActions, userSelectors } from "../../../ducks/user";
 import { UserListPageComponent } from "./UserListPageComponent";
-import { CommonAsyncCallback } from "../../../core/types";
 
 interface PropsFromStore {
   users: User[];

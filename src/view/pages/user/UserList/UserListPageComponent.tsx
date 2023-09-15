@@ -1,7 +1,8 @@
 import { useEffect } from "react";
+
+import { UserList } from "../../../components";
+import { WithNavigationProps, withNavigation } from "../../../hoc";
 import { UserListPageProps } from "./UserListPage";
-import { UserList } from "../../components";
-import { WithNavigationProps, withNavigation } from "../../hoc";
 
 type Props = UserListPageProps & WithNavigationProps;
 

@@ -1,8 +1,8 @@
 import { Action, ActionCreator, AnyAction, isType } from "typescript-fsa";
 import { call } from "typed-redux-saga";
 import { ForkEffect, takeEvery, takeLatest } from "redux-saga/effects";
-import { IUseCase } from "../domain/usecase/Usecase";
-import { CommonHttpResponse } from "../core/types";
+import { IUseCase } from "../../domain/usecase/Usecase";
+import { CommonHttpResponse } from "../../core/types";
 
 function* handleCommonFsaAction<T>(
   action: AnyAction,

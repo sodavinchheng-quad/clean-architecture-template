@@ -1,7 +1,7 @@
 import { put } from "typed-redux-saga";
 import { executeUseCase, takeLatestFsa } from "../operations";
 import { userActions } from "./actions";
-import dependency from "../../dependency";
+import dependency from "../../../dependency";
 
 export function* userSaga() {
   const { getAllUsersUseCase } = dependency.user;

@@ -1,6 +1,6 @@
 import actionCreatorFactory from "typescript-fsa";
-import { User } from "../../domain/model";
-import { CommonAsyncCallback } from "../../core/types";
+import { User } from "../../../domain/model";
+import { CommonAsyncCallback } from "../../../core/types";
 
 const actionCreator = actionCreatorFactory("@@User");
 

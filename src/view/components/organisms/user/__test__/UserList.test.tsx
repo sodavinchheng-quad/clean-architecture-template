@@ -1,8 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { User } from "../../../../../domain/model";
-import { UserList } from "../UserList";
 
 import users from "../../../../../mock/users.json";
+
+import { UserList } from "../UserList";
 import { UserService } from "../../../../../data/service";
 
 const userService = new UserService();
