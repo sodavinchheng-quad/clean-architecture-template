@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { Button } from "../button";
+import { Button } from "../Button";
 
 test("Button component renders the text based on prop input", async () => {
   const onClick = jest.fn();
